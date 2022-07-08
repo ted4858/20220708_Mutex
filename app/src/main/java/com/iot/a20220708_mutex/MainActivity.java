@@ -34,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        textView.setText(""+number);
+                        try {
+                            semaphore.acquire();
+                            textView.setText(""+number);
+                            semaphore.release();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
@@ -55,7 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        textView.setText(""+number);
+                        try {
+                            semaphore.acquire();
+                            textView.setText(""+number);
+                            semaphore.release();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
